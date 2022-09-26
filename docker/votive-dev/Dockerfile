@@ -10,7 +10,10 @@ RUN apt update -y
 RUN apt-get install -y \
     libprotoc-dev \
     libprotobuf-dev \
-    curl
+    curl \
+    llvm-14 \
+    clang-14
+
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 RUN rustup target add x86_64-unknown-linux-musl
