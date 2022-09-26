@@ -12,7 +12,8 @@ RUN apt-get install -y \
     libprotobuf-dev \
     curl \
     llvm-14 \
-    clang-14
+    clang-14 \
+    gcc
 
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
