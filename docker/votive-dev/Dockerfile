@@ -13,7 +13,8 @@ RUN apt-get install -y \
     curl \
     llvm-14 \
     clang-14 \
-    gcc
+    gcc \
+    libssl-dev
 
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
