@@ -29,8 +29,10 @@ RUN rm -rf openssl*
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 RUN rustup target add x86_64-unknown-linux-musl
+RUN rustup target add wasm32-unknown-unknown
 RUN rustup component add clippy
 RUN rustup component add rustfmt
+RUN cargo install trunk
 
 # Install Istio
 RUN curl -L https://istio.io/downloadIstio | sh -s -- -y
