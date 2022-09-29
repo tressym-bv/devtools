@@ -19,12 +19,7 @@ RUN apt-get install -y \
     zlib1g-dev
 
 # Install OpenSSL
-RUN wget https://www.openssl.org/source/openssl-3.0.5.tar.gz
-RUN tar -xf openssl-3.0.5.tar.gz
-RUN cd openssl* && ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib && make && make install
-RUN echo "/usr/local/ssl/lib" >> /etc/ld.so.conf.d/openssl*.conf
-RUN ldconfig -v
-RUN rm -rf openssl*
+RUN apt-get install -y libssl-dev
 
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
