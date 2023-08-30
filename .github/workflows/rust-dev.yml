@@ -5,10 +5,10 @@ on:
     branches:
       - 'main'
     paths:
-      - 'docker/votive-dev/**'
+      - 'docker/rust-dev/**'
   pull_request:
     paths:
-      - 'docker/votive-dev/**'
+      - 'docker/rust-dev/**'
 
 env:
   REGISTRY: ghcr.io
@@ -21,7 +21,7 @@ jobs:
       packages: write
     strategy:
       matrix:
-        image: ["votive-dev"]
+        image: ["rust-dev"]
 
     steps:
       - name: Checkout repository
