@@ -11,11 +11,17 @@ ENV RUSTUP_HOME=/usr/local/rustup \
 RUN echo "Building for $BUILDX_ARCH"
 
 RUN apk add --no-cache musl-dev libc-dev pkgconfig openssl \
-    protoc protobuf-dev openssl-dev git perl make && \
-    # Check target architecture
-    if [ "$BUILDX_ARCH" = "linux-arm64" ]; then ARCHITECTURE=aarch64-unknown-linux-musl; else ARCHITECTURE=x86_64-unknown-linux-musl; fi && \
-    # Add rust dependencies
+    protoc protobuf-dev openssl-dev git perl make
+
+# Add rust dependencies
+RUN if [ "$BUILDX_ARCH" = "linux-arm64" ]; then \
+        ARCHITECTURE=aarch64-unknown-linux-musl; \
+        else ARCHITECTURE=x86_64-unknown-linux-musl; \
+    fi && \
     rustup target add ${ARCHITECTURE} && \
+    # Add cross compilation targets
+    rustup target add aarch64-apple-ios && \
+    rustup target add aarch64-linux-android && \
     rustup component add clippy && \
     rustup component add rustfmt && \
     # Use binary install for tarpaulin to bypass build OOM error
