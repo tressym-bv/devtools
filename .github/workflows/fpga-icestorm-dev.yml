@@ -1,14 +1,14 @@
-name: Build & Publish Rust Dev Docker Image
+name: Build & Publish FPGA Icestorm Toolchain Dev Docker Image
 
 on:
   push:
     branches:
       - 'main'
     paths:
-      - 'docker/rust-dev/**'
+      - 'docker/fpga-icestorm-dev/**'
   pull_request:
     paths:
-      - 'docker/rust-dev/**'
+      - 'docker/fpga-icestorm-dev/**'
 
 env:
   REGISTRY: ghcr.io
@@ -21,7 +21,7 @@ jobs:
       packages: write
     strategy:
       matrix:
-        image: ["rust-dev"]
+        image: ["fpga-icestorm-dev"]
 
     steps:
       - name: Checkout repository
