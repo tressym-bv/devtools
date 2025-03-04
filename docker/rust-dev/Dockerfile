@@ -1,4 +1,4 @@
-FROM rust:1.83-alpine
+FROM rust:1.85-alpine
 
 ARG TARGETOS
 ARG TARGETARCH
@@ -29,5 +29,7 @@ RUN if [ "$BUILDX_ARCH" = "linux-arm64" ]; then \
     tar axvf cargo-tarpaulin-${ARCHITECTURE}.tar.gz && \
     mv cargo-tarpaulin $CARGO_HOME/bin/ && \
     rm cargo-tarpaulin-${ARCHITECTURE}.tar.gz
+
+RUN cargo install --locked cargo-deny cargo-about flamegraph
 
 WORKDIR /usr/src/app
