@@ -22,9 +22,9 @@ RUN if [ "$BUILDX_ARCH" = "linux-arm64" ]; then \
     # Add cross compilation targets
     rustup target add aarch64-apple-ios && \
     rustup target add aarch64-linux-android && \
+    rustup target add wasm32-unknown-unknown && \
     rustup component add clippy && \
     rustup component add rustfmt && \
-    # Use binary install for tarpaulin to bypass build OOM error
     wget https://github.com/xd009642/tarpaulin/releases/download/0.25.1/cargo-tarpaulin-${ARCHITECTURE}.tar.gz && \
     tar axvf cargo-tarpaulin-${ARCHITECTURE}.tar.gz && \
     mv cargo-tarpaulin $CARGO_HOME/bin/ && \
